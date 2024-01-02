@@ -1,0 +1,108 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "ADMIN",
+      "username": "admin",
+      "password": "1",
+      "avatarUrl": "",
+      "roles": [
+        0
+      ]
+    },
+    {
+      "id": 1,
+      "fullName": "USER",
+      "username": "user",
+      "password": "1",
+      "avatarUrl": "",
+      "roles": [
+        1
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Apple"
+    },
+    {
+      "id": 2,
+      "name": "SamSung"
+    },
+    {
+      "id": 3,
+      "name": "Xiaomi"
+    },
+    {
+      "id": 4,
+      "name": "Oppo"
+    },
+    {
+      "id": 5,
+      "name": "Vivo"
+    },
+    {
+      "id": 6,
+      "name": "Realme"
+    },
+    {
+      "id": 7,
+      "name": "Google"
+    },
+    {
+      "id": 8,
+      "name": "Khác"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s23-ultra.png",
+      "description": "Product 1 - desc",
+      "importPrice": 100000,
+      "currentPrice": 100000,
+      "discountPrice": 20000,
+      "importQuantity": 1200,
+      "amountSold": 1200,
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s23-ultra.png",
+      "description": "Product 2 - desc",
+      "importPrice": 200000,
+      "currentPrice": 200000,
+      "discountPrice": 20000,
+      "importQuantity": 2200,
+      "amountSold": 1200,
+      "categoryId": 1
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s23-ultra.png",
+      "description": "Product 3 - desc",
+      "importPrice": 300000,
+      "currentPrice": 300000,
+      "discountPrice": 20000,
+      "importQuantity": 3200,
+      "amountSold": 1200,
+      "categoryId": 1
+    },
+    {
+      "id": "GhlpncCQ2O6MMsb1EDZ_7",
+      "name": "SP1",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/t/gtt_7766_3__1_5.jpg",
+      "description": "á",
+      "importPrice": "100",
+      "currentPrice": "199",
+      "discountPrice": "198",
+      "importQuantity": "100",
+      "amountSold": 0,
+      "categoryId": "1"
+    }
+  ]
+}
