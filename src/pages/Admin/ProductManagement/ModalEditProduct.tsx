@@ -1,35 +1,18 @@
 import { useEffect, useState } from "react";
-import { IoMdClose } from "react-icons/io";
+import { Product } from "./ModalAddProduct";
 import { nanoid } from "nanoid";
+import { IoMdClose } from "react-icons/io";
 import { getListCategory } from "../../../api/apiCategory";
-import { postProduct } from "../../../api/apiProduct";
+import { getProductById, updateProduct } from "../../../api/apiProduct";
+import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 const myId = nanoid();
 
-export interface Category {
-	id: string | number;
-	name: string;
-}
-export interface Product {
-	id: string | number;
-	name: string | null;
-	thumbnail: string | null;
-	description: string | null;
-	importPrice: number | null;
-	currentPrice: number | null;
-	discountPrice: number | null;
-	importQuantity: number | null;
-	amountSold: number | null;
-	categoryId: number | null;
-}
-
-export const ModalAddProduct = (props: any) => {
-	const { setOpenModal } = props;
-
-	
+const ModalEditProduct = (props: any) => {
+	const { id, openModalUpdate, setOpenModalUpdate } = props;
 	const [product, setProduct] = useState<Product>({
-		id: myId,
+		id: "",
 		name: null,
 		thumbnail: null,
 		description: null,
@@ -48,7 +31,37 @@ export const ModalAddProduct = (props: any) => {
 		setListCategory(resListCategory);
 	};
 
+	const fetchProductById = async () => {
+		const dataProduct = await getProductById(id);
+		setProduct({
+			...product,
+			...dataProduct,
+		});
+	};
 	// event handlers
+	const handleUpdateProduct = async () => {
+		Swal.fire({
+			icon: "question",
+			title: "Bạn chắc chắn muốn cập nhật thông tin sản phẩm này?",
+			showConfirmButton: true,
+			showCancelButton: true,
+			confirmButtonText: "Đồng ý",
+			cancelButtonText: "Hủy",
+		}).then(async (result) => {
+			if (result.isConfirmed) {
+				const res = await updateProduct(id, product);
+				if (res.status === 200) {
+					toast.success("Cập nhật thông tin sản phẩm thành công!");
+					setOpenModalUpdate(false);
+				} else {
+					console.log(res);
+					toast.success("Có lỗi xảy ra!");
+					setOpenModalUpdate(false);
+				}
+			}
+		});
+	};
+
 	const handleChangeValue = (e: any) => {
 		const { name, value } = e.target;
 		if (value) {
@@ -59,31 +72,25 @@ export const ModalAddProduct = (props: any) => {
 		}
 	};
 
-	const handleSaveProduct = async () => {
-		for (let key in product) {
-			if (product[key as keyof Product] === null || product[key as keyof Product] === "") {
-				return toast.error(`Vui lòng chọn/nhập đầy đủ thông tin sản phẩm!`);
-			}
-		}
-		const res = await postProduct(product);
-		if (res.status === 201) {
-			toast.success("Tạo mới sản phẩm thành công!");
-			setOpenModal(false);
-		}
+	const handleCancel = () => {
+		setOpenModalUpdate(false);
 	};
 
 	useEffect(() => {
 		fetchListCategory();
 	}, []);
 
+	useEffect(() => {
+		fetchProductById();
+	}, [id]);
 	return (
 		<div className="fixed z-10 inset-0 w-full h-full flex items-center justify-center bg-gray-400 bg-opacity-80">
 			<div className="w-1/2 min-h-40 mx-auto p-4 bg-white rounded-md">
 				<div className="modal-p-header mb-4 border-b flex items-center justify-between">
-					<h2 className="text-2xl font-semibold uppercase py-2">Thêm mới sản phẩm</h2>
+					<h2 className="text-2xl font-semibold uppercase py-2">Cập nhật sản phẩm</h2>
 					<span
 						onClick={() => {
-							setOpenModal(false);
+							setOpenModalUpdate(false);
 						}}
 					>
 						<IoMdClose size={32} className="hover:text-red-500 cursor-pointer" />
@@ -97,6 +104,7 @@ export const ModalAddProduct = (props: any) => {
 								<input
 									type="text"
 									onChange={handleChangeValue}
+									value={product?.name || ""}
 									className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg"
 									name="name"
 									id="name"
@@ -110,7 +118,7 @@ export const ModalAddProduct = (props: any) => {
 								<input
 									type="number"
 									onChange={handleChangeValue}
-									defaultValue={0}
+									value={product?.importPrice || 0}
 									min={0}
 									className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg"
 									name="importPrice"
@@ -125,7 +133,7 @@ export const ModalAddProduct = (props: any) => {
 								<input
 									type="number"
 									onChange={handleChangeValue}
-									defaultValue={0}
+									value={product?.currentPrice || 0}
 									min={0}
 									className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg"
 									name="currentPrice"
@@ -140,7 +148,7 @@ export const ModalAddProduct = (props: any) => {
 								<input
 									type="number"
 									onChange={handleChangeValue}
-									defaultValue={0}
+									value={product?.discountPrice || 0}
 									min={0}
 									className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg"
 									name="discountPrice"
@@ -155,7 +163,7 @@ export const ModalAddProduct = (props: any) => {
 								<input
 									type="number"
 									onChange={handleChangeValue}
-									defaultValue={0}
+									value={product?.importQuantity || 0}
 									min={0}
 									className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg"
 									name="importQuantity"
@@ -167,7 +175,13 @@ export const ModalAddProduct = (props: any) => {
 						<div className="col-span-6">
 							<div className="flex flex-col">
 								<label htmlFor="categoryId">Hãng sản xuất</label>
-								<select name="categoryId" id="categoryId" className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg" onChange={handleChangeValue}>
+								<select
+									name="categoryId"
+									id="categoryId"
+									value={product?.categoryId || 0}
+									className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg"
+									onChange={handleChangeValue}
+								>
 									<option value="">Chọn hãng sản xuất</option>
 									{listCategory.map((iCat) => {
 										return (
@@ -181,10 +195,11 @@ export const ModalAddProduct = (props: any) => {
 						</div>
 						<div className="col-span-12">
 							<div className="flex flex-col">
-								<label htmlFor="">Hình ảnh sản phẩm</label>
+								<label htmlFor="">Link hình ảnh sản phẩm</label>
 								<input
 									type="text"
 									onChange={handleChangeValue}
+									value={product?.thumbnail || ""}
 									className="px-3 py-1 border border-gray-400 focus:outline-slate-400 rounded-lg"
 									name="thumbnail"
 									id="thumbnail"
@@ -197,6 +212,7 @@ export const ModalAddProduct = (props: any) => {
 								<label htmlFor="">Mô tả sản phẩm</label>
 								<textarea
 									onChange={handleChangeValue}
+									value={product?.description || ""}
 									className="p-2 border border-gray-400 focus:outline-slate-400 rounded-lg"
 									rows={4}
 									name="description"
@@ -207,12 +223,17 @@ export const ModalAddProduct = (props: any) => {
 						</div>
 					</div>
 				</div>
-				<div className="modal-p-footer float-end">
-					<button type="button" onClick={handleSaveProduct} className="px-10 py-2 bg-cyan-500 text-white rounded-md hover:opacity-70">
-						Lưu
+				<div className="modal-p-footer float-end flex items-center gap-4">
+					<button type="button" onClick={handleUpdateProduct} className="px-10 py-2 bg-cyan-500 text-white rounded-md hover:opacity-70">
+						Cập nhật
+					</button>
+					<button type="button" onClick={handleCancel} className="px-10 py-2 bg-cyan-500 text-white rounded-md hover:opacity-70">
+						Hủy
 					</button>
 				</div>
 			</div>
 		</div>
 	);
 };
+
+export default ModalEditProduct;

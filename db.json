@@ -19,6 +19,26 @@
       "roles": [
         1
       ]
+    },
+    {
+      "id": "2Jj8wn_XXHOKyKmzXQ3BT",
+      "fullName": "Tống Bá Quang Anh",
+      "username": "tbqa",
+      "password": "1",
+      "avatarUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-256gb_1.png",
+      "roles": [
+        1
+      ]
+    },
+    {
+      "id": "LzAGMw9fo-wFSkH-a61-f",
+      "fullName": "Tống Bá Quang Anh",
+      "username": "quanganhsnake",
+      "password": "1",
+      "avatarUrl": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-256gb_1.png",
+      "roles": [
+        1
+      ]
     }
   ],
   "categories": [
@@ -58,7 +78,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Product 1",
+      "name": "Product 11",
       "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s23-ultra.png",
       "description": "Product 1 - desc",
       "importPrice": 100000,
@@ -93,8 +113,20 @@
       "categoryId": 1
     },
     {
-      "id": "GhlpncCQ2O6MMsb1EDZ_7",
-      "name": "SP1",
+      "id": "GhlpncCQ2O6MMsb1EDZ_71",
+      "name": "iPhone 15 Pro Max 256GB | Chính hãng VN/A",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_3.png",
+      "description": "iPhone 15 Pro Max 256GB | Chính hãng VN/A",
+      "importPrice": "100",
+      "currentPrice": "199",
+      "discountPrice": "198",
+      "importQuantity": "100",
+      "amountSold": 0,
+      "categoryId": "1"
+    },
+    {
+      "id": "GhlpncCQ2O6MMsb1EDZ_72",
+      "name": "SP12",
       "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/t/gtt_7766_3__1_5.jpg",
       "description": "á",
       "importPrice": "100",
@@ -103,6 +135,78 @@
       "importQuantity": "100",
       "amountSold": 0,
       "categoryId": "1"
+    },
+    {
+      "id": "GhlpncCQ2O6MMsb1EDZ_73",
+      "name": "SP13",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/t/gtt_7766_3__1_5.jpg",
+      "description": "á",
+      "importPrice": "100",
+      "currentPrice": "199",
+      "discountPrice": "198",
+      "importQuantity": "100",
+      "amountSold": 0,
+      "categoryId": "1"
+    },
+    {
+      "id": "GhlpncCQ2O6MMsb1EDZ_74",
+      "name": "SP14",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/t/gtt_7766_3__1_5.jpg",
+      "description": "á",
+      "importPrice": "100",
+      "currentPrice": "199",
+      "discountPrice": "198",
+      "importQuantity": "100",
+      "amountSold": 0,
+      "categoryId": "1"
+    },
+    {
+      "id": "GhlpncCQ2O6MMsb1EDZ_75",
+      "name": "SP15",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/t/gtt_7766_3__1_5.jpg",
+      "description": "á",
+      "importPrice": "100",
+      "currentPrice": "199",
+      "discountPrice": "198",
+      "importQuantity": "100",
+      "amountSold": 0,
+      "categoryId": "1"
+    },
+    {
+      "id": "GhlpncCQ2O6MMsb1EDZ_76",
+      "name": "SP16",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/t/gtt_7766_3__1_5.jpg",
+      "description": "á",
+      "importPrice": "100",
+      "currentPrice": "199",
+      "discountPrice": "198",
+      "importQuantity": "100",
+      "amountSold": 0,
+      "categoryId": "1"
+    },
+    {
+      "id": "GhlpncCQ2O6MMsb1EDZ_77",
+      "name": "SP17",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/t/gtt_7766_3__1_5.jpg",
+      "description": "á",
+      "importPrice": "100",
+      "currentPrice": "199",
+      "discountPrice": "198",
+      "importQuantity": "100",
+      "amountSold": 0,
+      "categoryId": "1"
+    },
+    {
+      "id": "PW_cCtzO0Zx7vzZdg02nt",
+      "name": "Samsung Galaxy Z Flip5 256GB",
+      "thumbnail": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-z-flip-5-256gb_1_4.png",
+      "description": "Thần thái nổi bật, cân mọi phong cách- Lấy cảm hứng từ thiên nhiên với màu sắc thời thượng, xu hướng\nThiết kế thu hút ánh nhìn - Gập không kẽ hỡ, dẫn đầu công nghệ bản lề Flex\nTuyệt tác selfie thoả sức sáng tạo - Camera sau hỗ trợ AI xử lí cực sắc nét ngay cả trên màn hình ngoài\nBền bỉ bất chấp mọi tình huống - Đạt chuẩn kháng bụi và nước IP68 cùng chất liệu nhôm Armor Aluminum giúp hạn chế cong và xước",
+      "importPrice": "1000",
+      "currentPrice": "1000",
+      "discountPrice": "800",
+      "importQuantity": "300",
+      "amountSold": 0,
+      "categoryId": "2"
     }
   ]
 }

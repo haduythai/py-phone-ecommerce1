@@ -3,16 +3,20 @@ import { delProductById, getListProduct } from "../../../api/apiProduct";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { ModalAddProduct } from "./ModalAddProduct";
+import ModalEditProduct from "./ModalEditProduct";
 
 const ProductManagement = () => {
 	// var
+	const [currentPage, setCurrentPage] = useState(1);
 	const [listProduct, setListProduct] = useState<any[]>([]);
 	const [loading, setLoading] = useState<boolean | null>(true);
 	const [openModal, setOpenModal] = useState<boolean>(false);
+	const [openModalUpdate, setOpenModalUpdate] = useState<boolean>(false);
+	const [idProduct, setIdProduct] = useState<string | number>("");
 	// fetch
-	const fetchListProduct = async () => {
+	const fetchListProduct = async (currentPage: number) => {
 		try {
-			const result = await getListProduct();
+			const result = await getListProduct(currentPage);
 			setListProduct(result);
 			setLoading(false);
 		} catch (error) {}
@@ -33,15 +37,22 @@ const ProductManagement = () => {
 				const resDel = await delProductById(productId);
 				if (resDel == "OK") {
 					toast.success("Xoá sản phẩm thành công!");
-					fetchListProduct();
+					fetchListProduct(currentPage);
 				}
 			}
 		});
 	};
 
 	useEffect(() => {
-		fetchListProduct();
-	}, [loading, openModal]);
+		fetchListProduct(currentPage);
+	}, [loading, openModal, openModalUpdate, currentPage]);
+
+	const pageCount = Math.ceil(listProduct.length / 10);
+	const pageNumbers = [];
+
+	for (let i = 0; i <= pageCount; i++) {
+		pageNumbers.push(i + 1);
+	}
 
 	return (
 		<>
@@ -59,16 +70,8 @@ const ProductManagement = () => {
 							Thêm sản phẩm mới
 						</button>
 					</div>
-					<div className="product-m-search col-span-9">
+					<div className="product-m-search col-span-10">
 						<input type="text" name="" id="" placeholder="Nhập từ khoá tìm kiếm" className="border px-3 py-2 w-full focus:outline-slate-400 rounded-lg" />
-					</div>
-					<div className="product-m-itemPerPage col-span-1">
-						<select name="" id="" className="border px-3 py-2 w-full rounded-lg">
-							<option value="">10</option>
-							<option value="">15</option>
-							<option value="">20</option>
-							<option value="">25</option>
-						</select>
 					</div>
 				</div>
 				<div className="list__product w-full">
@@ -153,7 +156,16 @@ const ProductManagement = () => {
 											</td>
 											<td className="border-r px-3 py-2">
 												<div className="flex items-center gap-2">
-													<button className="bg-orange-600 text-white px-3 py-2 rounded-md hover:opacity-70">Sửa</button>
+													<button
+														type="button"
+														onClick={() => {
+															setIdProduct(iProduct.id);
+															setOpenModalUpdate(true);
+														}}
+														className="bg-orange-600 text-white px-3 py-2 rounded-md hover:opacity-70"
+													>
+														Sửa
+													</button>
 													<button
 														type="button"
 														onClick={() => {
@@ -171,11 +183,29 @@ const ProductManagement = () => {
 							</tbody>
 						</table>
 					) : (
-						<p>Không có sản phẩm nào!</p>
+						<p className="px-3 py-2 w-full text-center border">Không có sản phẩm nào!</p>
 					)}
+					<div className="my-6 flex justify-center">
+						<ul className="flex border">
+							{pageNumbers.map((numberPage) => {
+								return (
+									<li
+										onClick={() => {
+											setCurrentPage(numberPage);
+										}}
+										key={numberPage}
+										className={`px-3 py-1 hover:bg-cyan-600 hover:text-white hover:font-semibold cursor-pointer ${numberPage > pageNumbers.length - 1 ? "" : "border-r"}`}
+									>
+										<span>{numberPage}</span>
+									</li>
+								);
+							})}
+						</ul>
+					</div>
 				</div>
 			</div>
 			{openModal ? <ModalAddProduct openModal={openModal} setOpenModal={setOpenModal} /> : null}
+			{openModalUpdate ? <ModalEditProduct id={idProduct} openModalUpdate={openModalUpdate} setOpenModalUpdate={setOpenModalUpdate} /> : null}
 		</>
 	);
 };

@@ -1,7 +1,8 @@
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const LoginView = (props: any) => {
-	const { showPassword, onShowPassword, onChangeValue, onLogin } = props;
+	const { showPassword, usernameNew, onShowPassword, onChangeValue, onLogin } = props;
 
 	return (
 		<div className="flex justify-center">
@@ -13,6 +14,7 @@ export const LoginView = (props: any) => {
 							<input
 								type="text"
 								name="username"
+								value={usernameNew && usernameNew}
 								placeholder="Tài khoản"
 								onChange={(e) => {
 									onChangeValue(e);
@@ -46,8 +48,10 @@ export const LoginView = (props: any) => {
 				<div className="h-[100%] w-full md:w-1/3  bg-gradient-to-l from-blue-400 to-emerald-400  items-center flex justify-center">
 					<div className="text-white text-base font-semibold text-center my-10 space-y-2 m-2">
 						<h1 className="text-5xl">Bạn đã chưa có tài khoản?</h1>
-						<h1 className="">Đăng ký tài khoản mới ngay tại đây</h1>
-						<button className="bg-white rounded-2xl px-4 text-emerald-400 py-1">Đăng ký</button>
+						<h1 className="mb-4">Đăng ký tài khoản mới ngay tại đây</h1>
+						<Link to={"/register"} className="inline-block bg-white rounded-2xl px-4 text-emerald-400 py-1">
+							Đăng ký
+						</Link>
 					</div>
 				</div>
 			</div>

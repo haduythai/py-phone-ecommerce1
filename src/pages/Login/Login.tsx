@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginView } from "./LoginView";
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/useAuth";
@@ -9,7 +9,7 @@ export const Login = () => {
 	const [password, setPassword] = useState<string>("");
 
 	const { onLogin } = useAuth();
-
+	const dataUsername = localStorage.getItem("username");
 	// event handlers
 	const handleChangeValue = (e: any) => {
 		const { name, value } = e.target;
@@ -37,6 +37,14 @@ export const Login = () => {
 		}
 
 		await onLogin!(username, password);
+		if (dataUsername) {
+			localStorage.removeItem("username");
+		}
 	};
-	return <LoginView showPassword={showPassword} onShowPassword={handleShowPassword} onLogin={handleSignIn} onChangeValue={handleChangeValue} />;
+
+	useEffect(() => {
+		setUsername(dataUsername as string);
+	}, [dataUsername]);
+
+	return <LoginView showPassword={showPassword} usernameNew={dataUsername} onShowPassword={handleShowPassword} onLogin={handleSignIn} onChangeValue={handleChangeValue} />;
 };
