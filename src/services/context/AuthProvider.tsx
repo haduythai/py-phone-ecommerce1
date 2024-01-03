@@ -8,6 +8,7 @@ interface UserContextType {
 	dataUser?: {
 		username: string | null;
 		fullName: string | null;
+		avatarUrl: string | null;
 		roles: number[] | null;
 	} | null;
 	onLogin?: (username: string, password: string) => Promise<any>;
@@ -20,10 +21,12 @@ export const AuthProvider = ({ children }: any) => {
 	const [dataUser, setDataUser] = useState<{
 		username: string | null;
 		fullName: string | null;
+		avatarUrl: string | null;
 		roles: number[] | null;
 	} | null>({
 		username: "",
 		fullName: "",
+		avatarUrl: "",
 		roles: null,
 	});
 	const navigate = useNavigate();
@@ -36,6 +39,7 @@ export const AuthProvider = ({ children }: any) => {
 			setDataUser({
 				username: restDataUser?.username,
 				fullName: restDataUser?.fullName,
+				avatarUrl: restDataUser?.avatarUrl,
 				roles: restDataUser?.roles,
 			});
 			localStorage.setItem("auth_data", JSON.stringify(restDataUser));
@@ -58,6 +62,7 @@ export const AuthProvider = ({ children }: any) => {
 			setDataUser({
 				username: userObject?.username,
 				fullName: userObject?.fullName,
+				avatarUrl: userObject?.avatarUrl,
 				roles: userObject?.roles,
 			});
 		}
